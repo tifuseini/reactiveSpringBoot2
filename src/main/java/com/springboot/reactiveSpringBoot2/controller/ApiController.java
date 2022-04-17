@@ -24,9 +24,9 @@ public class ApiController {
         Hooks.onOperatorDebug();
 
         return Flux.just(
-                new Image(1,"Image 1"),
-                new Image(2,"Image 2"),
-                new Image(3,"Image 4")
+                new Image("1","Image 1"),
+                new Image("2","Image 2"),
+                new Image("3","Image 4")
         );
     }
 
@@ -37,6 +37,7 @@ public class ApiController {
         return images
                 .map(image -> {
                     log.info("We will save " +image + "to a Reactive database soon!");
+                    return image;
                 })
                 .then();
 
