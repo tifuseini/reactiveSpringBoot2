@@ -1,2 +1,4 @@
-package com.springboot.reactiveSpringBoot2.model;public class Image {
+package com.springboot.reactiveSpringBoot2.model;
+
+public class Image {
 }
