@@ -48,6 +48,16 @@ public class ImageService {
                 ));
     }
 
+    public Mono<Void> deleteImage(String filename){
+        return Mono.fromRunnable(() -> {
+            try {
+                Files.deleteIfExists(Paths.get(UPLOAD_ROOT,filename));
+            } catch (IOException e){
+                throw new RuntimeException()
+            }
+        });
+    }
+
     public Mono<Void> createImage(Flux<FilePart> files){
         return files
                 .flatMap(file -> file.transferTo(
