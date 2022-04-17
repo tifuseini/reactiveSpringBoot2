@@ -7,6 +7,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.FileSystemUtils;
+import reactor.core.publisher.Flux;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -23,6 +24,18 @@ public class ImageService {
 
     public ImageService(ResourceLoader resourceLoader){
         this.resourceLoader = resourceLoader;
+    }
+
+    public Flux<Image> findAllImages(){
+        try {
+            return Flux.fromIterable(
+                    Files.newDirectoryStream(Paths.get(UPLOAD_ROOT)))
+                    .map(path ->
+                        new Image(path.hashCode(),
+                            path.getFileName().toString()));
+        } catch (IOException e){
+            return Flux.empty()
+        }
     }
 
     @Bean
