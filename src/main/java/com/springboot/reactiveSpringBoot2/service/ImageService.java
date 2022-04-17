@@ -53,7 +53,7 @@ public class ImageService {
             try {
                 Files.deleteIfExists(Paths.get(UPLOAD_ROOT,filename));
             } catch (IOException e){
-                throw new RuntimeException()
+                throw new RuntimeException(e);
             }
         });
     }
