@@ -48,7 +48,13 @@ public class ImageService {
                 ));
     }
 
-    public Mono<Void> createImage(Flux<FilePart> files)
+    public Mono<Void> createImage(Flux<FilePart> files){
+        return files
+                .flatMap(file -> file.transferTo(
+                        Paths.get(UPLOAD_ROOT,file.filename()).toFile()
+                ))
+                .then();
+    }
 
     @Bean
     CommandLineRunner setUp() throws IOException{
