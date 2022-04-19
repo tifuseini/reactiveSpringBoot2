@@ -55,5 +55,11 @@ public class HomeController {
                 .then(Mono.just("rediect:/"));
     }
 
+    @DeleteMapping(BASE_PATH + "/" + FILENAME)
+    public Mono<String> deleteFile(@PathVariable String filename){
+        return imageService.deleteImage(filename)
+                .then(Mono.just("redirect:/"));
+    }
+
 
 }
