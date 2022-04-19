@@ -29,13 +29,9 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("mono", Flux.just(
-                new Image("1", "learning-spring-boot-cover.jpg"),
-                new Image("2", "learning-spring-boot-2nd-edition-cover.jpg"),
-                new Image("3", "bazinga.png")
-        ));
-        return "index";
+    public Mono<String> index(Model model){
+        model.addAttribute("images",imageService.findAllImages());
+        return Mono.just("index");
     }
 
     @GetMapping(value = BASE_PATH + "/" + FILENAME + "/raw", produces = MediaType.IMAGE_JPEG_VALUE)
