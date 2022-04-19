@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class HomeController {
 
+
     private static final String BASE_PATH = "/images";
 
     private static final String FILENAME = "{filename:.+}";
