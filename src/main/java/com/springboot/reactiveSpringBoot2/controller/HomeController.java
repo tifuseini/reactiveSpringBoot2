@@ -35,7 +35,7 @@ public class HomeController {
             @PathVariable String filename) {
         return imageService.findOneImage(filename)
                 .map(resource -> {
-                    try {
+                     try {
                         return ResponseEntity.ok()
                                 .contentLength(resource.contentLength())
                                 .body(new InputStreamResource(
