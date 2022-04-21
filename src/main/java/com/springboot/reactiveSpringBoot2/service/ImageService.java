@@ -29,17 +29,17 @@ public class ImageService {
         this.resourceLoader = resourceLoader;
     }
 
-    public Flux<Image> findAllImages(){
-        try {
-            return Flux.fromIterable(
-                    Files.newDirectoryStream(Paths.get(UPLOAD_ROOT)))
-                    .map(path ->
-                        new Image(path.hashCode(),
-                            path.getFileName().toString()));
-        } catch (IOException e){
-            return Flux.empty();
-        }
-    }
+//    public Flux<Image> findAllImages(){
+//        try {
+//            return Flux.fromIterable(
+//                    Files.newDirectoryStream(Paths.get(UPLOAD_ROOT)))
+//                    .map(path ->
+//                        new Image(path.hashCode(),
+//                            path.getFileName().toString()));
+//        } catch (IOException e){
+//            return Flux.empty();
+//        }
+//    }
 
     public Mono<Resource> findOneImage(String filename){
         return Mono.fromSupplier(() ->
